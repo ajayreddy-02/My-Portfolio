@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    @apply bg-dark-900 text-dark-50 font-sans;
+  }
+
+  .light body {
+    @apply bg-white text-dark-900;
+  }
+
+  ::selection {
+    @apply bg-primary-500/30 text-primary-200;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-500/40 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-500/60;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+
+  .glass-light {
+    @apply bg-white/80 backdrop-blur-lg border border-dark-200/50;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 via-primary-500 to-primary-300 bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    @apply border border-transparent bg-clip-padding;
+    background-image: linear-gradient(theme('colors.dark.800'), theme('colors.dark.800')),
+                      linear-gradient(135deg, theme('colors.primary.500'), theme('colors.primary.300'));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28 px-4 md:px-8;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom cursor */
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(59, 130, 246, 0.8);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease, width 0.15s ease, height 0.15s ease;
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  border-color: rgba(96, 165, 250, 0.8);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* Loading screen */
+.loading-screen {
+  @apply fixed inset-0 z-[100] flex items-center justify-center bg-dark-900;
+}
+
+.loading-bar {
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3B82F6, #60A5FA);
+  border-radius: 4px;
+  animation: loadingProgress 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingProgress {
+  0% { width: 0%; margin-left: 0; }
+  50% { width: 70%; margin-left: 15%; }
+  100% { width: 0%; margin-left: 100%; }
+}
+
+/* Particle styles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Light mode overrides */
+.light .glass {
+  @apply bg-white/70 backdrop-blur-lg border border-dark-200/40 shadow-lg shadow-dark-900/5;
+}
+
+.light ::-webkit-scrollbar-track {
+  @apply bg-dark-100;
+}
+
+.light ::selection {
+  @apply bg-primary-500/30 text-primary-800;
+}
+
+.light .gradient-border {
+  background-image: linear-gradient(white, white),
+                    linear-gradient(135deg, theme('colors.primary.500'), theme('colors.primary.300'));
+}
