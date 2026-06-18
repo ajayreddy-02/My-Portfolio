@@ -163,7 +163,7 @@ export const projects = [
     subtitle: "AI-Driven Employment Portal",
     description:
       "An AI-powered employment platform that intelligently matches skilled professionals with employers. Includes role-based dashboards, authentication, job management, AI recommendations, and real-time availability tracking.",
-    image: "/images/workbridge.jpg",
+    image: "/images/workbridge.webp",
     category: "Full Stack",
     tech: [
       "React",
@@ -183,7 +183,7 @@ export const projects = [
     subtitle: "Emotion Aware Adaptive Learning Platform",
     description:
       "A smart e-learning platform that detects learner emotions using AI and adapts learning content dynamically. Includes emotion recognition, personalized recommendations, dashboards, and analytics.",
-    image: "/images/ecoed.jpg",
+    image: "/images/ecoed.jpeg",
     category: "AI/ML",
     tech: [
       "React",
@@ -221,7 +221,7 @@ export const projects = [
     subtitle: "Real-Time Weather Dashboard",
     description:
       "Responsive weather application using the OpenWeather API featuring current conditions, forecasts, search, and location-based weather information.",
-    image: "/images/weather.jpg",
+    image: "/images/weather.webp",
     category: "Frontend",
     tech: [
       "React",
@@ -239,7 +239,7 @@ export const projects = [
     subtitle: "Agriculture E-Commerce Platform",
     description:
       "A web platform connecting farmers directly with buyers. Includes authentication, product listings, order management, and responsive user dashboards.",
-    image: "/images/farmers.jpg",
+    image: "/images/farmer.jpg",
     category: "Full Stack",
     tech: [
       "React",
@@ -257,7 +257,7 @@ export const projects = [
     subtitle: "Modern Responsive Portfolio",
     description:
       "A personal portfolio website with animations, dark mode, responsive layouts, project showcase, certifications, and contact integration.",
-    image: "/images/portfolio.jpg",
+    image: "/images/portfolio.jpeg",
     category: "Frontend",
     tech: [
       "React",
@@ -275,7 +275,7 @@ export const projects = [
     subtitle: "MERN Stack Chat Platform",
     description:
       "Built during MERN internship. Features secure authentication, Socket.IO real-time messaging, online status, and responsive chat interface.",
-    image: "/images/chat.jpg",
+    image: "/images/chat.png",
     category: "Full Stack",
     tech: [
       "MongoDB",
@@ -329,7 +329,7 @@ export const projects = [
     subtitle: "Cloud Computing Project",
     description:
       "Cloud deployment architecture using EC2, Auto Scaling Groups, Load Balancer, Route53, S3, CloudFront, and SSL for high availability and scalability.",
-    image: "/images/aws.jpg",
+    image: "/images/auto.jpg",
     category: "Cloud",
     tech: [
       "AWS",
@@ -369,7 +369,7 @@ export const projects = [
   subtitle: "Artificial Intelligence Project",
   description:
     "An AI-powered resume screening system that parses resumes, extracts technical skills using NLP, compares them against job descriptions, clusters relevant skills, and generates an ATS compatibility score from 0 to 10 with personalized improvement suggestions.",
-  image: "/images/resume-parser.jpg",
+  image: "/images/resume.jpg",
   category: "AI/ML",
   tech: [
     "Python",
@@ -390,7 +390,7 @@ export const projects = [
   subtitle: "NLP Conversational Assistant",
   description:
     "A rule-based conversational AI chatbot built using Natural Language Processing. It performs text preprocessing, intent recognition, TF-IDF vectorization, cosine similarity matching, and generates intelligent responses through an interactive Streamlit interface.",
-  image: "/images/chatbot.jpg",
+  image: "/images/ai.jpg",
   category: "AI/ML",
   tech: [
     "Python",
