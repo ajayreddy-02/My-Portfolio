@@ -1,6 +1,5 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub, FiGlobe } from 'react-icons/fi';
 import { personalInfo } from '../utils/data';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -12,25 +11,35 @@ export default function Contact() {
   const [error, setError] = useState('');
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSending(true);
-    setError('');
+  e.preventDefault();
+  setSending(true);
+  setError('');
+  setSent(false);
 
-    try {
-      await emailjs.sendForm(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
-        e.currentTarget,
-        'YOUR_PUBLIC_KEY'
-      );
+  const form = e.currentTarget;
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch('https://formspree.io/f/xykaarok', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+      },
+    });
+
+    if (response.ok) {
       setSent(true);
-      (e.target as HTMLFormElement).reset();
-    } catch {
+      form.reset();
+    } else {
       setError('Failed to send message. Please try again.');
-    } finally {
-      setSending(false);
     }
-  };
+  } catch (err) {
+    setError('Something went wrong. Please try again.');
+  } finally {
+    setSending(false);
+  }
+};
 
   const contactInfo = [
     { icon: FiMail, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}` },
@@ -98,7 +107,7 @@ export default function Contact() {
                   <label className="block text-dark-300 text-sm font-medium mb-2">Name</label>
                   <input
                     type="text"
-                    name="from_name"
+                    name="name"
                     required
                     className="w-full px-4 py-3 rounded-xl bg-dark-800/50 border border-dark-600/50 text-dark-200 text-sm placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all"
                     placeholder="Your name"
@@ -108,7 +117,7 @@ export default function Contact() {
                   <label className="block text-dark-300 text-sm font-medium mb-2">Email</label>
                   <input
                     type="email"
-                    name="from_email"
+                    name="email"
                     required
                     className="w-full px-4 py-3 rounded-xl bg-dark-800/50 border border-dark-600/50 text-dark-200 text-sm placeholder-dark-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all"
                     placeholder="Your email"
@@ -150,18 +159,23 @@ export default function Contact() {
               </div>
 
               {sent && (
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-green-400 text-sm"
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-xl bg-green-500/10 border border-green-500/30 p-4 text-green-400 text-sm"
                 >
-                  Message sent successfully!
-                </motion.p>
+                  ✅ Thank you! Your message has been sent successfully. I'll get back to you soon.
+                </motion.div>
               )}
               {error && (
-                <p className="text-red-400 text-sm">{error}</p>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="rounded-xl bg-red-500/10 border border-red-500/30 p-4 text-red-400 text-sm"
+                >
+                  ❌ {error}
+                </motion.div>
               )}
-
               <motion.button
                 type="submit"
                 disabled={sending}
